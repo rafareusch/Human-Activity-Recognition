@@ -1,4 +1,3 @@
-import csv
 import torch
 import visdom
 import numpy as np
@@ -29,6 +28,9 @@ def main():
     print(model)
     # summary(model, input_size=(1, 40))
     # print(model)
+
+
+
 
     if params["use_cuda"]:
         print('__CUDNN VERSION:', torch.backends.cudnn.version())
@@ -64,11 +66,11 @@ def main():
             print("=> no checkpoint found at '{}'".format(params["resume"]))
 
     train_loader, val_loader = build_dataloader(params["root"], params)
-    print("DEBUG >>>>>>>>>>>>>>>>>>>>>>>")
-    print(train_loader)
-    print(val_loader)
 
     logger = visdom.Visdom()
+
+
+
 
     train(train_loader=train_loader,
           val_loader=val_loader,

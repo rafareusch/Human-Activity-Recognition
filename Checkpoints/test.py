@@ -3,16 +3,10 @@ import visdom
 import argparse
 import os
 import pandas as pd
-import numpy
-import sys
 
 from config.set_params import params as sp
 from modeling.model import HARmodel
 from utils.preprocessing import HARdataset
-
-
-
-
 
 activation = {}
 activation.clear()
@@ -80,25 +74,7 @@ def main():
     results = [className[i] for i in results]
     print("Prediction results:")
     print(results)
-    print("-----------------------------------")
 
-    for name, param in model.named_parameters():
-        if param.requires_grad:
-            print(name)
-    torch.set_printoptions(profile="full")
-
-    print(model.features[1][0])
-
-    # print("WEIGHTS CONV 1D-----------------------------------")
-    # print(model.features[0].weight)
-    # print("WEIGHTS CONV 1D-----------------------------------")
-    # print(model.features[3].weight)
-    # print("WEIGHTS CONV 1D-----------------------------------")
-    # print(model.features[6].weight)
-    # print("WEIGHTS CONV 1D-----------------------------------")
-    # print(model.classifier[1].weight)
-    # print("WEIGHTS CONV 1D-----------------------------------")
-    # print(model.classifier[4].weight)
 if __name__ == "__main__":
     main()
 

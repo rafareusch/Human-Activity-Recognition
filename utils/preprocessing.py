@@ -7,7 +7,9 @@ class HARdataset():
 	"""Build dataset from motion sensor data."""
 	def __init__(self, root):
 		self.df = pd.read_csv(root, low_memory=False)
+
 		self.parts = ["belt", "arm", "dumbbell", "forearm"]
+		# 4 x 10
 		self.variables = ["roll_{}", "pitch_{}", "yaw_{}", "total_accel_{}", 
 					   "accel_{}_x", "accel_{}_y", "accel_{}_z", "gyros_{}_x",
 					   							   "gyros_{}_y", "gyros_{}_z"]
@@ -35,10 +37,14 @@ class HARdataset():
 
 	def build_dataset(self):
 		"""Get list of motion sensor variables and labels."""
+		# Fazer isso ficar 3x40 (target final)
+
+		
 		var_list = []
+		# for times in range(2):
 		for part in self.parts:
 			for var in self.variables:
-				var_list.append(list(self.df[var.format(part)]))
+				var_list.append(list(self.df[var.format(part)]))	
 		var_list = torch.tensor(var_list)
 		labels = torch.tensor([ord(char) for char in list(self.df["classe"])])
 		labels -= 65
