@@ -31,11 +31,11 @@ def train(train_loader,
 
             output = model(steps)
 
-            print("DEBUG >>>>>>>>>>>>>")
-            torch.set_printoptions(profile="full")
-            print(steps)
-            print(iteration)
-            print(targets)
+            # print("DEBUG >>>>>>>>>>>>>")
+            # torch.set_printoptions(profile="full")
+            # print(steps)
+            # print(iteration)
+            # print(targets)
             loss = criterion(output, targets)
 
             optimizer.zero_grad()

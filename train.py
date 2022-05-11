@@ -64,9 +64,9 @@ def main():
             print("=> no checkpoint found at '{}'".format(params["resume"]))
 
     train_loader, val_loader = build_dataloader(params["root"], params)
-    print("DEBUG >>>>>>>>>>>>>>>>>>>>>>>")
-    print(train_loader)
-    print(val_loader)
+    # print("DEBUG >>>>>>>>>>>>>>>>>>>>>>>")
+    # print(train_loader)
+    # print(val_loader)
 
     logger = visdom.Visdom()
 
