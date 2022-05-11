@@ -23,7 +23,6 @@ def main():
     args = parser.parse_args()
 
     params = sp().params
-
     model = HARmodel(params["input_dim"], params["num_classes"])
     repr(model) # print +info about model
     print(model)
@@ -64,6 +63,7 @@ def main():
             print("=> no checkpoint found at '{}'".format(params["resume"]))
 
     train_loader, val_loader = build_dataloader(params["root"], params)
+    print(len(train_loader))
     # print("DEBUG >>>>>>>>>>>>>>>>>>>>>>>")
     # print(train_loader)
     # print(val_loader)

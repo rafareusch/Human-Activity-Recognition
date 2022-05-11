@@ -62,9 +62,6 @@ class HARdataset():
         sub_list2 = []
         sub_var_list = []
         var_list_140 = []
-        sourceFile = open('demo.txt', 'w+')
-
-
         
         for line in range(len(var_list[0])-2):
             for item in var_list:
@@ -81,21 +78,21 @@ class HARdataset():
         labels = torch.tensor([ord(char) for char in list(self.df["classe"])])
         labels -= 65
 
-        print("Out Prints:")
-        print(len(var_list_140))
-        print(len(var_list_140[0]))
  
         var_list_140 = [list(x) for x  in zip(*var_list_140)] #
 
-        print("Out Prints:")
+        print("varlist140 Prints:")
         print(len(var_list_140))
         print(len(var_list_140[0]))
  
-
+        print("varlistdefauly Prints:")
+        print(len(var_list))
+        print(len(var_list[0]))
+ 
         var_list_140 = torch.tensor(var_list_140)
 
 
-        return var_list, labels
+        return var_list_140, labels
 
     def split_ind(self, val_split, shuffle=True):
         """

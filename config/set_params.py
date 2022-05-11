@@ -9,7 +9,7 @@ class params:
             "resume": None,
             "input_dim": 1,
             "num_classes": 5,
-            "workers": 4,
+            "workers": 0,
             "batch_size": 32,
             "epochs": 300,
             "lr": 0.003,
