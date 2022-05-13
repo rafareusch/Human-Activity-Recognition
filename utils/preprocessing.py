@@ -81,6 +81,10 @@ class HARdataset():
  
         var_list_140 = [list(x) for x  in zip(*var_list_140)] #
 
+        print(len(labels))
+        labels = labels[:len(var_list_140[0])] 
+        print(len(labels))
+
         print("varlist140 Prints:")
         print(len(var_list_140))
         print(len(var_list_140[0]))
