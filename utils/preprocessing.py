@@ -63,11 +63,11 @@ class HARdataset():
         sub_var_list = []
         var_list_140 = []
         
-        for line in range(len(var_list[0])-2):
+        for line in range(2,len(var_list[0])):
             for item in var_list:
-                sub_list.append(item[0+line])
-                sub_list1.append(item[1+line])
-                sub_list2.append(item[2+line])
+                sub_list.append(item[line])
+                sub_list1.append(item[line-1])
+                sub_list2.append(item[line-2])
             sub_var_list = [*sub_list, *sub_list1, *sub_list2]
             sub_list.clear()
             sub_list1.clear()
@@ -82,7 +82,7 @@ class HARdataset():
         var_list_140 = [list(x) for x  in zip(*var_list_140)] #
 
         print(len(labels))
-        labels = labels[:len(var_list_140[0])] 
+        labels = labels[2:] 
         print(len(labels))
 
         print("varlist140 Prints:")
