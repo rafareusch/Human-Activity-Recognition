@@ -17,11 +17,12 @@ class HARmodel(nn.Module):
             nn.Dropout(),
             nn.Conv1d(64, 64, 5), #-4
             nn.ReLU(),
+            nn.MaxPool1d(2),
             )
         # Classify output, fully connected layers
         self.classifier = nn.Sequential(
         	nn.Dropout(),
-        	nn.Linear(6912, 128),
+        	nn.Linear(3456, 128),
         	nn.ReLU(),
         	nn.Dropout(),
         	nn.Linear(128, num_classes),
@@ -29,7 +30,7 @@ class HARmodel(nn.Module):
 
     def forward(self, x):
     	x = self.features(x)
-    	x = x.view(x.size(0), 6912)
+    	x = x.view(x.size(0), 3456)
     	out = self.classifier(x)
 
     	return out
