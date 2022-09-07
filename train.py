@@ -14,6 +14,9 @@ from utils.build_dataset import build_dataloader
 def main():
     """Driver file for training HAR model."""
 
+    # Solve error in missing engine in quantization
+    torch.backends.quantized.engine = 'qnnpack'
+
     parser = argparse.ArgumentParser(description="Training")
     parser.add_argument(
         "--checkpoint",
@@ -24,9 +27,13 @@ def main():
 
     params = sp().params
     model = HARmodel(params["input_dim"], params["num_classes"])
+
+    model = torch.quantization.quantize_dynamic(model,{torch.nn.Linear},dtype=torch.qint8)
+
+
     repr(model) # print +info about model
     print(model)
-    # summary(model, input_size=(1, 40))
+    # summary(model2, input_size=(1,120,1))
     # print(model)
 
     if params["use_cuda"]:

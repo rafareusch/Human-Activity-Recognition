@@ -39,6 +39,11 @@ def train(train_loader,
             loss = criterion(output, targets)
 
             optimizer.zero_grad()
+
+            # Required to allow quantization
+            loss.requires_grad =True 
+            
+            
             loss.backward()
             optimizer.step()
 
