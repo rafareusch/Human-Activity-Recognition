@@ -9,13 +9,13 @@ class HARmodel(nn.Module):
         # Extract features, 1D conv layers
         self.features = nn.Sequential(
             #        (in_channels,out_channels,kernel_size) rafael
-            nn.Conv1d(input_size, 64, 5),  #-4
+            nn.Conv2d(1,64,3),
             nn.ReLU(),
             nn.Dropout(),
-            nn.Conv1d(64, 64, 5), #-4
+            nn.Conv2d(64,64,3),
             nn.ReLU(),
             nn.Dropout(),
-            nn.Conv1d(64, 64, 5), #-4
+            nn.Conv2d(64,64,3),
             nn.ReLU(),
             nn.MaxPool1d(2),
             )

@@ -1,4 +1,5 @@
 from ctypes import sizeof
+from distutils.log import debug
 import pandas as pd
 import torch
 import numpy as np
@@ -55,48 +56,50 @@ class HARdataset():
   
         var_list = torch.tensor(var_list)
 
-        print("DEBUG <<<<<<<<<<<<<<<<<<<<<<< 1111")
-
-        sub_list = []
-        sub_list1 = []
-        sub_list2 = []
         sub_var_list = []
-        var_list_140 = []
-        
+        var_list_3x40 = []
+    
+        # var_list_140  =  {  T1 & T2 & T3 ,  T1 & T2 & T3 , T1 & T2 & T3 ,  T1 & T2 & T3 .....  }
+        # var_list_3x40  =  {  {T1,T2,T3} ,  T1 & T2 & T3 , T1 & T2 & T3 ,  T1 & T2 & T3 .....  }
+
+
+        # if ver se mesmo name todos os timesteps
+
+        print("\n\n------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-------------------------------\n\n")
+
         for line in range(2,len(var_list[0])):
             for item in var_list:
-                sub_list.append(item[line])
-                sub_list1.append(item[line-1])
-                sub_list2.append(item[line-2])
-            sub_var_list = [*sub_list, *sub_list1, *sub_list2]
-            sub_list.clear()
-            sub_list1.clear()
-            sub_list2.clear()
-            var_list_140.append(sub_var_list)
+                sub_var_list.append(item[line])
+                sub_var_list.append(item[line-1])
+                sub_var_list.append(item[line-2])
+            var_list_3x40.append(sub_var_list)
+            sub_var_list.clear()
+
 
 		# decidir qual label colocar - rafael
         labels = torch.tensor([ord(char) for char in list(self.df["classe"])])
         labels -= 65
 
  
-        var_list_140 = [list(x) for x  in zip(*var_list_140)] #
+            
+        # var_list_3x40 = [list(x) for x  in zip(*var_list_3x40)] #
 
         print(len(labels))
         labels = labels[2:] 
         print(len(labels))
 
         print("varlist140 Prints:")
-        print(len(var_list_140))
-        print(len(var_list_140[0]))
+        print(len(var_list_3x40))
+        print(len(var_list_3x40[0]))
  
         print("varlistdefauly Prints:")
         print(len(var_list))
         print(len(var_list[0]))
  
-        var_list_140 = torch.tensor(var_list_140)
+        var_list_3x40 = torch.tensor(var_list_3x40)
 
 
-        return var_list_140, labels
+        return var_list_3x40, labels
 
     def split_ind(self, val_split, shuffle=True):
         """

@@ -23,19 +23,16 @@ def train(train_loader,
 
     print("Start training...")
     for epoch in range(start_epoch, max_epoch):
-        scheduler.step()
+        print("DEBUG >>>>>>>>>>>>>")
         for iteration, (steps, targets, _) in enumerate(train_loader):
+            print("DEBUG_2 >>>>>>>>>>>>>")
             if params["use_cuda"]:
                 steps = steps.cuda()
                 targets = targets.cuda()
 
+            scheduler.step()
             output = model(steps)
 
-            # print("DEBUG >>>>>>>>>>>>>")
-            # torch.set_printoptions(profile="full")
-            # print(steps)
-            # print(iteration)
-            # print(targets)
             loss = criterion(output, targets)
 
             optimizer.zero_grad()
