@@ -4,6 +4,7 @@ import visdom
 import numpy as np
 import argparse
 import os
+import sys
 
 from torchinfo import summary
 from engine.trainer import train
@@ -79,5 +80,68 @@ def main():
           logger=logger,
           )
 
+    print(model)
+
+    torch.set_printoptions(profile="full")
+    print("WEIGHTS CONV-----------------------------------")
+
+    original_stdout = sys.stdout # 
+    with open('0_bias.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.features[0].bias)
+        sys.stdout = original_stdout
+
+    with open('0_weight.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.features[0].weight)
+        sys.stdout = original_stdout
+
+    print("WEIGHTS CONV-----------------------------------")
+
+    original_stdout = sys.stdout # 
+    with open('3_bias.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.features[3].bias)
+        sys.stdout = original_stdout
+
+    with open('3_weight.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.features[3].weight)
+        sys.stdout = original_stdout
+
+
+    print("WEIGHTS CONV-----------------------------------")
+
+    original_stdout = sys.stdout # 
+    with open('6_bias.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.features[6].bias)
+        sys.stdout = original_stdout
+
+    with open('6_weight.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.features[6].weight)
+        sys.stdout = original_stdout
+
+    print("WEIGHTS FC----------------s-------------------")
+
+
+    with open('classifier_1_weight.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.classifier[1].weight)
+        sys.stdout = original_stdout
+
+    print("WEIGHTS FC-----------------------------------")
+
+    with open('classifier_2_weight.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.classifier[4].weight)
+        sys.stdout = original_stdout
+
+    print(model[0].weight.grad)
+
+    print(len(list(model.parameters()))) # print all weights of model
+if __name__ == "__main__":
+    main()
 if __name__ == "__main__":
     main()
