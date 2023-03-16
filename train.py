@@ -131,11 +131,27 @@ def main():
         print(model.classifier[1].weight)
         sys.stdout = original_stdout
 
+    print("WEIGHTS FC----------------s-------------------")
+
+
+    with open('classifier_1_bias.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.classifier[1].bias)
+        sys.stdout = original_stdout
+
+
     print("WEIGHTS FC-----------------------------------")
 
     with open('classifier_2_weight.txt', 'w') as f:
         sys.stdout = f # Change the standard output to the file we created.
         print(model.classifier[4].weight)
+        sys.stdout = original_stdout
+
+    print("BIAS FC-----------------------------------")
+
+    with open('classifier_2_bias.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        print(model.classifier[4].bias)
         sys.stdout = original_stdout
 
     print(model[0].weight.grad)

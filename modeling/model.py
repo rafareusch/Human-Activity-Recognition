@@ -1,3 +1,4 @@
+from tkinter.tix import InputOnly
 import torch
 import torch.nn as nn
 
@@ -8,7 +9,7 @@ class HARmodel(nn.Module):
 
         # Extract features, 1D conv layers
         self.features = nn.Sequential(
-            #        (in_channels,out_channels,kernel_size) rafael
+            #(in_channels,out_channels,kernel_size) rafael
             nn.Conv1d(input_size, 64, 5),  #-4
             nn.ReLU(),
             nn.Dropout(),

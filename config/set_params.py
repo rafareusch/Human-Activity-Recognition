@@ -11,7 +11,7 @@ class params:
             "num_classes": 5,
             "workers": 0,
             "batch_size": 32,
-            "epochs": 300,
+            "epochs": 2,
             "lr": 0.003,
             "momentum": 0.9,
             "weight_decay": 1e-4,
